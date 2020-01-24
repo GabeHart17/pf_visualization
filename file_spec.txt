@@ -1,0 +1,30 @@
+for visualize.py:
+- .csv
+- 5 columns of numbers, in order left to right:
+  - actual x
+  - actual y
+  - predicted x
+  - predicted y
+  - predicted rotation
+  - weight (not used)
+
+for visualize_animated.py
+- is a.txt file
+- consists of:
+  - 1 field line:
+    - "x_min, x_max, y_min, y_max"
+  - "*"
+  - 1 or more beacon lines:
+    - "x_position, y_position"
+    - 1 beacon per line
+  - "*"
+  - 1 or more state iterations
+    - 1 or more particle state lines
+      - "x, y, rotation, weight"
+      - 1 state per line
+    - 1 prediction line
+      - "x, y, rotation, weight"
+    - 1 actual line
+      - "x, y, rotation"
+    - 1 delimiter line
+      - "~"
