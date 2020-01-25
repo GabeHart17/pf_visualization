@@ -62,5 +62,5 @@ def update(frame):
     # eln.set_data(range(frame), error)
     return ln, pln, aln#, eln
 
-anim = FuncAnimation(fig, update, frames=range(len(data.states)), init_func=init, blit=True, repeat=False)
+anim = FuncAnimation(fig, update, frames=range(len(data.states)), init_func=init, blit=True, repeat=False, interval=50)
 plt.show()
