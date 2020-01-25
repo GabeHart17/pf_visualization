@@ -20,17 +20,17 @@ actual_x = []
 actual_y = []
 error = []
 
-fig, axes = plt.subplots(nrows=1, ncols=2)
-ax = axes[0]
-er = axes[1]
+fig, axes = plt.subplots(nrows=1, ncols=1)
+ax = axes#[0]
+# er = axes[1]
 ax.plot(beacon_x, beacon_y, 'ko')
 pln, = ax.plot([], [], 'r.')
 aln, = ax.plot([], [], 'g.')
 ln, = ax.plot([], [], 'b.')
-eln, = er.plot([], [], 'k-')
+# eln, = er.plot([], [], 'k-')
 
 def set_data(iter):
-    global data, x_data, y_data, rot_data, predicted_x, predicted_y, actual_x, actual_y
+    global x_data, y_data, rot_data, predicted_x, predicted_y, actual_x, actual_y
     x_data = []
     y_data = []
     rot_data = []
@@ -45,24 +45,22 @@ def set_data(iter):
     error.append(math.hypot(predicted_x[-1] - actual_x[-1], predicted_y[-1] - actual_y[-1]))
 
 def init():
-    global data, ln, pln, aln, eln
     ax.set_xlim(data.field[0], data.field[1])
     ax.set_ylim(data.field[2], data.field[3])
-    er.set_xlim(0, len(data.states))
-    er.set_ylim(0, 2)
+    # er.set_xlim(0, len(data.states))
+    # er.set_ylim(0, 2)
     set_data(0)
-    return ln, pln, aln, eln
+    return ln, pln, aln#, eln
 
 def update(frame):
-    global x_data, y_data, predicted_x, predicted_y, actual_x, actual_y, rot_data, fig, ln, pln, aln, eln
     if frame == 0:
         init()
     set_data(frame)
     pln.set_data(predicted_x, predicted_y)
     aln.set_data(actual_x, actual_y)
     ln.set_data(x_data, y_data)
-    eln.set_data(range(frame), error)
-    return ln, pln, aln, eln
+    # eln.set_data(range(frame), error)
+    return ln, pln, aln#, eln
 
 anim = FuncAnimation(fig, update, frames=range(len(data.states)), init_func=init, blit=True, repeat=False)
 plt.show()
